@@ -34,7 +34,7 @@ Smart_PLL_Interface/
 │
 ├── src/
 │   ├── gui_main.py         # GUI frontend – controls, sweep engine, and routing logic
-│   └── rf_controller.py    # Backend – GPIB instrument I/O and serial abstractions
+│   └── GPIB_controller.py  # Backend – GPIB instrument I/O and serial abstractions
 ├── README.md               # Documentation
 └── LICENSE                 # MIT (educational use)
 ```
@@ -49,7 +49,7 @@ Educational reference for engineers or students learning:
 ---
 
 ### Disclaimer
-This release is a sanitized, independent derivative created for demonstration and educational use only. The core architecture and system flow were inspired by hardware-in-the-loop (HIL) automation challenges I solved during my time at Z-Communications, Inc.
+This release is a sanitized, independent derivative created for demonstration and educational use only. The core architecture and system flow were inspired by hardware-in-the-loop (HIL) automation challenges I solved at Z-Communications, Inc.
 
 To fully comply with NDA and IP guidelines, all proprietary firmware commands, exact timing constraints, hardware identifiers, and confidential company data have been strictly generalized or removed. Over 50% of the code is redacted to adhere to complaince. This repository serves solely to showcase high-level embedded hardware control and UI decoupling.
 
