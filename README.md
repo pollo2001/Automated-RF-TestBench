@@ -34,10 +34,44 @@ Smart_PLL_Interface/
 │
 ├── src/
 │   ├── gui_main.py         # GUI frontend – controls, sweep engine, and routing logic
-│   └── GPIB_controller.py  # Backend – GPIB instrument I/O and serial abstractions
+│   ├── GPIB_controller.py  # Backend – GPIB instrument I/O and serial abstractions
+│   └── run_sweep.bat       # Boot-strap Launcher
 ├── README.md               # Documentation
 └── LICENSE                 # MIT (educational use)
 ```
+---
+
+# SSG_POWER_SWEEP v1.0 - Maintenance & Deployment Guide
+
+### 1. The Launcher Strategy (.bat vs .exe)
+While a compiled .exe offers a single-file look, 'run_sweep.bat' 
+provides a more robust deployment for lab environments. It 
+functions as a "Bootstrap Launcher":
+- It silently verifies/installs dependencies (PyVISA, etc.) on 
+  the host bench before execution.
+- It eliminates "Module Not Found" errors caused by PyInstaller 
+  hidden-import conflicts with legacy NI-VISA backends.
+- It provides a transparent console for real-time debugging if 
+  a hardware connection fails.
+
+### 2. Deployment to Test Benches
+To add this tool to a new bench:
+1. Navigate to this network folder from the bench PC.
+2. Right-click 'run_sweep.bat' -> Send to -> Desktop (shortcut).
+3. Change Icon: Right-click Shortcut -> Properties -> Change Icon 
+   -> Browse to 'thum.ico' in this network folder.
+
+### 3. Data Integrity & Overwrite Protection
+- The script generates .csv results in this root folder.
+- CRITICAL: Filenames are derived from the 'Serial Number' field. 
+  Always update the SN or Identifier before a new sweep to 
+  avoid overwriting previous test data.
+
+### 4. Hardware Handoff
+- If the sweep logic or SCPI commands need updating, edit 
+'gui_main.py' directly. All benches will pull the update 
+automatically on the next launch.
+
 ---
 
 ### Purpose
